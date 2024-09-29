@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tyt_hesaplayici/ardisik_toplam.dart';
 import 'ebob.dart';
 import 'ekok.dart';
 import 'asal_carpan.dart';
@@ -87,7 +88,7 @@ class HomeScreen extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  '~Developed by Dophin',
+                  '~Developed by Yunus',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -127,6 +128,14 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pop(context); // Drawer'ı kapat
               },
             ),
+            ListTile(
+              leading: Icon(Icons.calculate),
+              title: Text('Örüntülü Toplam'),
+              onTap: () {
+                onPageSelected(4); // Sayfa Asal Çarpnlar göster
+                Navigator.pop(context); // Drawer'ı kapat
+              },
+            ),
           ],
         ),
       ),
@@ -144,6 +153,8 @@ class HomeScreen extends StatelessWidget {
         return EKOK();
       case 3:
         return Asal_carpan();
+      case 4:
+        return ArdisikToplam();
       default:
         return HomePage(onPageSelected: onPageSelected); // Varsayılan olarak Sayfa 1'i göster
     }
@@ -159,6 +170,8 @@ class HomeScreen extends StatelessWidget {
         return 'EKOK';
       case 3:
         return 'Asal Çarpanlar';
+      case 4:
+        return 'Örüntülü Toplamlar';
       default:
         return 'Ana Sayfa'; // Varsayılan başlık
     }
@@ -223,7 +236,19 @@ class HomePage extends StatelessWidget {
               ), // Asal çarpanlar sayfasına git
               child: Text('Asal Çarpanlar'),
             ),
-              ],
+            ElevatedButton(
+              onPressed: () => onPageSelected(4), // EKOK sayfasına git
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(150, 150), // Buton boyutu
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16), // Köşeleri düz
+                ),
+                elevation: 5, // Gölge efekti
+                shadowColor: Colors.black45,
+              ),
+              child: Text('Örüntülü Toplam'),
+            ),
+            ],
             ),
             SizedBox(height: 80),
             Container(

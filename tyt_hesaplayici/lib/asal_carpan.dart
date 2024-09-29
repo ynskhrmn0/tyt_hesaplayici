@@ -44,7 +44,7 @@ class _Asal_carpanState extends State<Asal_carpan> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Asal Çarpanlarını hesaplamak istediğiniz sayıyı girin.",
+              "Asal Çarpanlarını hesaplamak istediğiniz sayıyı girin:",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),

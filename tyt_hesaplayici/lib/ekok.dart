@@ -48,7 +48,7 @@ class _EKOKState extends State<EKOK> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "En büyük ortak bölenini hesaplamak istediğiniz sayıyı girin.",
+              "En büyük ortak bölenini hesaplamak istediğiniz sayıyı girin:",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),

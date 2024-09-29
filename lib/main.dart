@@ -88,7 +88,7 @@ class HomeScreen extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  '~Developed by Dophin',
+                  '~Developed by Yunus',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tyt_hesaplayici/ardisik_toplam.dart';
+import 'package:tyt_hesaplayici/derece.dart';
+import 'package:tyt_hesaplayici/faktoriyel.dart';
+import 'package:tyt_hesaplayici/fibonacci.dart';
 import 'ebob.dart';
 import 'ekok.dart';
 import 'asal_carpan.dart';
@@ -136,6 +139,30 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pop(context); // Drawer'ı kapat
               },
             ),
+            ListTile(
+              leading: Icon(Icons.calculate),
+              title: Text('Faktöriyel'),
+              onTap: () {
+                onPageSelected(5); // Sayfa Asal Çarpnlar göster
+                Navigator.pop(context); // Drawer'ı kapat
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.calculate),
+              title: Text('Fibonacci'),
+              onTap: () {
+                onPageSelected(6); // Sayfa Asal Çarpnlar göster
+                Navigator.pop(context); // Drawer'ı kapat
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.calculate),
+              title: Text('Derece Hesaplama'),
+              onTap: () {
+                onPageSelected(7); // Sayfa Asal Çarpnlar göster
+                Navigator.pop(context); // Drawer'ı kapat
+              },
+            ),
           ],
         ),
       ),
@@ -155,6 +182,12 @@ class HomeScreen extends StatelessWidget {
         return Asal_carpan();
       case 4:
         return ArdisikToplam();
+      case 5:
+        return Faktoriyel();
+      case 6:
+        return Fibonacci();
+      case 7:
+        return DerececHesap();
       default:
         return HomePage(onPageSelected: onPageSelected); // Varsayılan olarak Sayfa 1'i göster
     }
@@ -172,6 +205,12 @@ class HomeScreen extends StatelessWidget {
         return 'Asal Çarpanlar';
       case 4:
         return 'Örüntülü Toplamlar';
+      case 5:
+        return 'Faktöriyel';
+      case 6:
+        return 'Fibonacci';
+      case 7:
+        return 'Derece Hesaplama';
       default:
         return 'Ana Sayfa'; // Varsayılan başlık
     }
@@ -186,86 +225,82 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-              onPressed: () => onPageSelected(1), // EBOB sayfasına git
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(150, 150), // Buton boyutu
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16), // Köşeleri düz
-                ),
-                elevation: 5, // Gölge efekti
-                shadowColor: Colors.black45,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(height: 20,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                _buildCustomButton(context, "EBOB Hesaplama", () => onPageSelected(1)),
+                _buildCustomButton(context, "EKOK Hesaplama", () => onPageSelected(2)),
+                ],
               ),
-              child: Text('EBOB Hesapla'),
-            ),
-            ElevatedButton(
-              onPressed: () => onPageSelected(2), // EKOK sayfasına git
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(150, 150), // Buton boyutu
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16), // Köşeleri düz
-                ),
-                elevation: 5, // Gölge efekti
-                shadowColor: Colors.black45,
-              ),
-              child: Text('EKOK Hesapla'),
-            ),
+              SizedBox(height: 20,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                _buildCustomButton(context, "Asal Çarpanlar", () => onPageSelected(3)),
+                _buildCustomButton(context, "Örüntülü Toplam", () => onPageSelected(4)),
               ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-              onPressed: () => onPageSelected(3),
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(150, 150), // Buton boyutu
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16), // Köşeleri düz
-                ),
-                elevation: 5, // Gölge efekti
-                shadowColor: Colors.black45,
-              ), // Asal çarpanlar sayfasına git
-              child: Text('Asal Çarpanlar'),
-            ),
-            ElevatedButton(
-              onPressed: () => onPageSelected(4), // EKOK sayfasına git
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(150, 150), // Buton boyutu
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16), // Köşeleri düz
-                ),
-                elevation: 5, // Gölge efekti
-                shadowColor: Colors.black45,
               ),
-              child: Text('Örüntülü Toplam'),
-            ),
+              SizedBox(height: 20,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                _buildCustomButton(context, "Faktöriyel", () => onPageSelected(5)),
+                _buildCustomButton(context, "Fibonacci", () => onPageSelected(6)),
+              ],
+              ),
+              SizedBox(height: 20,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                _buildCustomButton(context, "Derece Hesaplama", () => onPageSelected(7)),
+              ],
+              ),
+              SizedBox(height: 80),
+              Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  "Daha fazla seçenek yakında",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
             ],
-            ),
-            SizedBox(height: 80),
-            Container(
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                "Daha fazla seçenek yakında",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCustomButton(BuildContext context, String text, VoidCallback onPressed) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size(150, 150), // Buton boyutu
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16), // Köşeleri düz
+        ),
+        elevation: 5, // Gölge efekti
+        backgroundColor: Theme.of(context).colorScheme.primary, // Buton rengi
+        foregroundColor: Colors.white, // Metin rengi
+        shadowColor: Colors.black45, // Gölge rengi
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 12,
         ),
       ),
     );

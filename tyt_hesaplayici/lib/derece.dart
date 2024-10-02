@@ -63,7 +63,13 @@ class _DerececHesapState extends State<DerececHesap> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+                "Açısını hesaplamak istediğiniz dereceleri girin:",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal:15, vertical: 10),
               child: Row(

@@ -39,9 +39,10 @@ class _FibonacciState extends State<Fibonacci> {
       if (b == BigInt.from(number)) {
         setState(() {
           _result = '$number, Fibonacci dizisinde baştan $index. sıradadır.';
-          _sumResult = '';
+          _sumResult = '~';
         });
       } else {
+        _bugFixIndex = index -1;
         setState(() {
           _result = '$number, Fibonacci dizisinde ${a} ve ${b} arasında bulunur.';
           _sumResult = 'Bu sayı, Fibonacci dizisinde $_bugFixIndex. terimden sonra gelir.';

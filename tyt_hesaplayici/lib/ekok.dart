@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class EKOK extends StatefulWidget {
-  const EKOK ({super.key});
+  const EKOK({super.key});
 
   @override
   State<EKOK> createState() => _EKOKState();
 }
 
 class _EKOKState extends State<EKOK> {
-
   final TextEditingController _firstNumberController = TextEditingController();
   final TextEditingController _secondNumberController = TextEditingController();
   String _result = '';

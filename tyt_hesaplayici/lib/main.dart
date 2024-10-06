@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: _isDarkTheme 
+      theme: _isDarkTheme
           ? ThemeData.dark().copyWith(
               primaryColor: Colors.black,
               scaffoldBackgroundColor: Colors.black,
@@ -59,7 +59,11 @@ class HomeScreen extends StatelessWidget {
   final int currentIndex;
   final Function(int) onPageSelected;
 
-  HomeScreen({required this.isDarkTheme, required this.toggleTheme, required this.currentIndex, required this.onPageSelected});
+  HomeScreen(
+      {required this.isDarkTheme,
+      required this.toggleTheme,
+      required this.currentIndex,
+      required this.onPageSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +72,8 @@ class HomeScreen extends StatelessWidget {
         title: Text(_getAppBarTitle(currentIndex)),
         centerTitle: true,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)), // Yuvarlak köşeler
+          borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(20)), // Yuvarlak köşeler
         ),
         elevation: 200, // Gölge efekti
         actions: [
@@ -189,7 +194,9 @@ class HomeScreen extends StatelessWidget {
       case 7:
         return DerececHesap();
       default:
-        return HomePage(onPageSelected: onPageSelected); // Varsayılan olarak Sayfa 1'i göster
+        return HomePage(
+            onPageSelected:
+                onPageSelected); // Varsayılan olarak Sayfa 1'i göster
     }
   }
 
@@ -231,36 +238,51 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                _buildCustomButton(context, "EBOB Hesaplama", () => onPageSelected(1)),
-                _buildCustomButton(context, "EKOK Hesaplama", () => onPageSelected(2)),
+                  _buildCustomButton(
+                      context, "EBOB Hesaplama", () => onPageSelected(1)),
+                  _buildCustomButton(
+                      context, "EKOK Hesaplama", () => onPageSelected(2)),
                 ],
               ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                _buildCustomButton(context, "Asal Çarpanlar", () => onPageSelected(3)),
-                _buildCustomButton(context, "Örüntülü Toplam", () => onPageSelected(4)),
-              ],
+              SizedBox(
+                height: 20,
               ),
-              SizedBox(height: 20,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                _buildCustomButton(context, "Faktöriyel", () => onPageSelected(5)),
-                _buildCustomButton(context, "Fibonacci", () => onPageSelected(6)),
-              ],
+                  _buildCustomButton(
+                      context, "Asal Çarpanlar", () => onPageSelected(3)),
+                  _buildCustomButton(
+                      context, "Örüntülü Toplam", () => onPageSelected(4)),
+                ],
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                _buildCustomButton(context, "Derece Hesaplama", () => onPageSelected(7)),
-              ],
+                  _buildCustomButton(
+                      context, "Faktöriyel", () => onPageSelected(5)),
+                  _buildCustomButton(
+                      context, "Fibonacci", () => onPageSelected(6)),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildCustomButton(
+                      context, "Derece Hesaplama", () => onPageSelected(7)),
+                ],
               ),
               SizedBox(height: 80),
               Container(
@@ -284,7 +306,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildCustomButton(BuildContext context, String text, VoidCallback onPressed) {
+  Widget _buildCustomButton(
+      BuildContext context, String text, VoidCallback onPressed) {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(

@@ -12,7 +12,7 @@ class _FibonacciState extends State<Fibonacci> {
   String _result = '';
   String _sumResult = '';
   int _selectedSegment = 0;
-  int _bugFixIndex= 0;
+  int _bugFixIndex = 0;
 
   void _calculateFibonacci() {
     final int? number = int.tryParse(_numberController.text);
@@ -42,10 +42,12 @@ class _FibonacciState extends State<Fibonacci> {
           _sumResult = '~';
         });
       } else {
-        _bugFixIndex = index -1;
+        _bugFixIndex = index - 1;
         setState(() {
-          _result = '$number, Fibonacci dizisinde ${a} ve ${b} arasında bulunur.';
-          _sumResult = 'Bu sayı, Fibonacci dizisinde $_bugFixIndex. terimden sonra gelir.';
+          _result =
+              '$number, Fibonacci dizisinde ${a} ve ${b} arasında bulunur.';
+          _sumResult =
+              'Bu sayı, Fibonacci dizisinde $_bugFixIndex. terimden sonra gelir.';
         });
       }
     } else {
@@ -62,7 +64,8 @@ class _FibonacciState extends State<Fibonacci> {
 
       setState(() {
         _result = 'Fibonacci dizisinde $number. terim: $b';
-        _sumResult = 'Bu terime kadar olan sayıların toplamı: ${_calculateFibonacciSum(number)}';
+        _sumResult =
+            'Bu terime kadar olan sayıların toplamı: ${_calculateFibonacciSum(number)}';
       });
     }
   }
@@ -97,89 +100,92 @@ class _FibonacciState extends State<Fibonacci> {
               ),
               SizedBox(height: 16),
               Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _numberController,
-                  decoration: InputDecoration(
-                  labelText: 'Sayı girin',
-                  border: OutlineInputBorder(),
-                  fillColor: Theme.of(context).colorScheme.surface,
-                  filled: true,
-                ),
-                keyboardType: TextInputType.number,
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _numberController,
+                      decoration: InputDecoration(
+                        labelText: 'Sayı girin',
+                        border: OutlineInputBorder(),
+                        fillColor: Theme.of(context).colorScheme.surface,
+                        filled: true,
+                      ),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                  SizedBox(width: 16),
+                  Column(
+                    children: [
+                      ToggleButtons(
+                        borderRadius: BorderRadius.circular(8),
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Text('Sırasını bul'),
+                          ),
+                        ],
+                        isSelected: [_selectedSegment == 0],
+                        onPressed: (index) {
+                          setState(() {
+                            _selectedSegment = 0;
+                          });
+                        },
+                      ),
+                      SizedBox(height: 10),
+                      ToggleButtons(
+                        borderRadius: BorderRadius.circular(8),
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Text('Sayıyı bul'),
+                          ),
+                        ],
+                        isSelected: [_selectedSegment == 1],
+                        onPressed: (index) {
+                          setState(() {
+                            _selectedSegment = 1;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _calculateFibonacci,
+                child: Text('Hesapla'),
+              ),
+              SizedBox(height: 20),
+              if (_sumResult.isNotEmpty)
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    _result,
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    textAlign: TextAlign.center,
                   ),
                 ),
-                SizedBox(width: 16),
-                Column(
-                  children: [
-                    ToggleButtons(
-                      borderRadius: BorderRadius.circular(8),
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Text('Sırasını bul'),
-                        ),
-                      ],
-                      isSelected: [_selectedSegment == 0],
-                      onPressed: (index) {
-                        setState(() {
-                          _selectedSegment = 0;
-                        });
-                      },
-                    ),
-                    SizedBox(height: 10),
-                    ToggleButtons(
-                      borderRadius: BorderRadius.circular(8),
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Text('Sayıyı bul'),
-                        ),
-                      ],
-                      isSelected: [_selectedSegment == 1],
-                      onPressed: (index) {
-                        setState(() {
-                          _selectedSegment = 1;
-                        });
-                      },
-                    ),
-                  ],
+              if (_sumResult.isNotEmpty) SizedBox(height: 20),
+              if (_sumResult.isNotEmpty)
+                Container(
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    _sumResult,
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ],
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _calculateFibonacci,
-              child: Text('Hesapla'),
-            ),
-            SizedBox(height: 20),
-            if (_sumResult.isNotEmpty) Container(
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                _result,
-                style: TextStyle(color: Colors.white, fontSize: 16),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            if (_sumResult.isNotEmpty) SizedBox(height: 20),
-            if (_sumResult.isNotEmpty)
-              Container(
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  _sumResult,
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                  textAlign: TextAlign.center,
-                ),
-              ),
             ],
           ),
         ),

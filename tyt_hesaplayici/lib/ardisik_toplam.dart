@@ -35,85 +35,85 @@ class _ArdisikToplamState extends State<ArdisikToplam> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'İlk sayıyı, artış miktarını ve son sayıyı girin:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'İlk sayıyı, artış miktarını ve son sayıyı girin:',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 15),
+          TextField(
+            controller: _startController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              labelText: 'İlk Sayı',
+              border: OutlineInputBorder(),
+              fillColor: Theme.of(context).colorScheme.surface,
+              filled: true,
             ),
-            SizedBox(height: 15),
-            TextField(
-              controller: _startController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: 'İlk Sayı',
-                border: OutlineInputBorder(),
-                fillColor: Theme.of(context).colorScheme.surface,
-                filled: true,
+          ),
+          SizedBox(height: 15),
+          TextField(
+            controller: _stepController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              labelText: 'Artış Miktarı',
+              border: OutlineInputBorder(),
+              fillColor: Theme.of(context).colorScheme.surface,
+              filled: true,
+            ),
+          ),
+          SizedBox(height: 15),
+          TextField(
+            controller: _endController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              labelText: 'Son Sayı',
+              border: OutlineInputBorder(),
+              fillColor: Theme.of(context).colorScheme.surface,
+              filled: true,
+            ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: _calculateSum,
+            child: Text('Hesapla'),
+          ),
+          SizedBox(height: 20),
+          Container(
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(
+              "Tüm Sayıların Toplamı = $_result",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
               ),
             ),
-            SizedBox(height: 15),
-            TextField(
-              controller: _stepController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: 'Artış Miktarı',
-                border: OutlineInputBorder(),
-                fillColor: Theme.of(context).colorScheme.surface,
-                filled: true,
+          ),
+          SizedBox(height: 15),
+          Container(
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(
+              "Terim Sayısı = $_termCount",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
               ),
             ),
-            SizedBox(height: 15),
-            TextField(
-              controller: _endController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: 'Son Sayı',
-                border: OutlineInputBorder(),
-                fillColor: Theme.of(context).colorScheme.surface,
-                filled: true,
-              ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _calculateSum,
-              child: Text('Hesapla'),
-            ),
-            SizedBox(height: 20),
-            Container(
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                "Tüm Sayıların Toplamı = $_result",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            SizedBox(height: 15),
-            Container(
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                "Terim Sayısı = $_termCount",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
+          ),
+        ],
+      ),
+    );
   }
 }

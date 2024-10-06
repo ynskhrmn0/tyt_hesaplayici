@@ -8,7 +8,6 @@ class EBOB extends StatefulWidget {
 }
 
 class _EBOBState extends State<EBOB> {
-
   final TextEditingController _firstNumberController = TextEditingController();
   final TextEditingController _secondNumberController = TextEditingController();
   String _result = '';
